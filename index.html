@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="issApp">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Simple Map">
+  <meta name="keywords" content="ng-map,AngularJS,center">
+  <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+
+  <title>ISS Tracker</title>
+  <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+  <!-- endbower -->
+
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/app/styles/style.css">
+  <!-- endinject -->
+</head>
+
+<body ng-controller="issNgMapController as vmMap">
+  <div ng-controller="issInfoController as vmIss">
+    <div ngMapController="TimerController as vmTimer">
+      <ng-map id="map" zoom="3" center="{{vmIss.latlon}}" zoom-to-include="auto" map-type-control="false">
+        <shape name="polyline" path="[
+       [37.772323, -122.214897],
+       [21.291982, -157.821856],
+       [-18.142599, 178.431],
+       [-27.46758, 153.027892]
+     ]" geodesic="true" stroke-color="#FF0000" stroke-opacity="1.0" stroke-weight="2">
+        </shape>
+      </ng-map>
+      <h3><timer interval="5000"/></h3>
+      <textarea style="height: 100px;" row=20 cols="200"></textarea>
+      <script src="http://maps.google.com/maps/api/js?key=AIzaSyD_4w8QF3phpFPESSDQoNHa3C8g6ilaqiM&libraries=places"></script>
+
+      <button type="button" class="btn btn-default" ng-click="vmTimer.startTimer()">Start Timer</button>
+      <button type="button" class="btn btn-default" ng-click="vmTimer.stopTimer()">Stop Timer</button>
+    </div>
+  </div>
+
+  <!-- bower:js -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/toastr/toastr.js"></script>
+  <script src="bower_components/ngmap/build/scripts/ng-map.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/humanize-duration/humanize-duration.js"></script>
+  <script src="bower_components/angular-timer/dist/angular-timer.js"></script>
+  <!-- endbower -->
+
+  <!-- inject:js -->
+  <script src="/app/app.js"></script>
+  <script src="/app/issInfoController/issinfo.controller.js"></script>
+  <script src="/app/issInfoController/issinfo.factory.js"></script>
+  <script src="/app/ngMapController/issngmap.controller.js"></script>
+  <script src="/app/PollingTimer/timer.controller.js"></script>
+  <!-- endinject -->
+</body>
+
+</html>
