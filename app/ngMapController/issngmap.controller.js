@@ -1,4 +1,6 @@
 (function() {
+  //This factory calls the goolge maps and makes the ngmap directive.
+  //Remember where ever you go, there you are!!!
   'use strict';
 
   angular
